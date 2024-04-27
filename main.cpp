@@ -136,6 +136,20 @@ int testGenerateCardNumber(int testCount)
     return 0;
 }
 
+/*
+* Tests all functions
+* @param testCount - number of tests to run
+* @return 0 if all tests pass, otherwise test number that failed
+*/
+int testAllFunctions()
+{
+    if (testGenerateRandomCardSuit(100) != 0) return 1;
+    if (testGenerateRandomCardType(1300) != 0) return 2;
+    if (testGenerateCardNumber(100) != 0) return 3;
+
+    return 0;
+}
+
 int main()
 {
     return 0;
