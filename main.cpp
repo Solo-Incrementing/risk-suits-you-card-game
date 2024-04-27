@@ -25,6 +25,32 @@ char generateRandomCardSuit()
     }
 }
 
+/*
+* Test geenerateRandomCardSuit function
+* @param testCount - number of tests to run
+* @return 0 if all cases pass, 1 if a test fails
+*/
+int testGenerateRandomCardSuit(int testCount)
+{
+    for (int i{ 0 }; i < testCount; ++i)
+    {
+        char cardSuit{ generateRandomCardSuit() };
+
+        switch (cardSuit)
+        {
+        case 'C':
+        case 'S':
+        case 'D':
+        case 'H':
+            break;
+        default:
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
 int main()
 {
     return 0;
