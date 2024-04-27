@@ -118,6 +118,24 @@ int testGenerateRandomCardType(int testCount)
     return 0;
 }
 
+/*
+* Test generateCardNumber function
+* @param testCount - number of tests to run
+* @return 0 if all cases pass, test number if a test fails
+*/
+int testGenerateCardNumber(int testCount)
+{
+    for (int i{ 0 }; i < testCount; ++i)
+    {
+        int cardNumber{ generateCardNumber() };
+
+        if (cardNumber < 2) return 1;
+        if (cardNumber > 10) return 2;
+    }
+
+    return 0;
+}
+
 int main()
 {
     return 0;
