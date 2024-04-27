@@ -26,6 +26,22 @@ char generateRandomCardSuit()
 }
 
 /*
+* generate a random card type with the correct probability distribution
+* @return A character 'N', 'F', or 'A' representing the card types
+* Number, Face or Ace respectively.
+* '0' if something went wrong
+*/
+char generateRandomCardType()
+{
+    int typeNumber{ Random::get(1, 13) };
+
+    if (typeNumber > 0 && typeNumber <= 9)          return 'N';
+    else if (typeNumber > 9 && typeNumber <= 12)    return 'F';
+    else if (typeNumber == 13)                      return 'A';
+    else                                            return '0';
+}
+
+/*
 * Test geenerateRandomCardSuit function
 * @param testCount - number of tests to run
 * @return 0 if all cases pass, 1 if a test fails
