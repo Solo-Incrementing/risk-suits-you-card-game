@@ -42,6 +42,15 @@ char generateRandomCardType()
 }
 
 /*
+* generate a card number
+* @return A random number between 2 and 10 inclusive for a number card
+*/
+int generateCardNumber()
+{
+    return Random::get(2, 10);
+}
+
+/*
 * Test geenerateRandomCardSuit function
 * @param testCount - number of tests to run
 * @return 0 if all cases pass, 1 if a test fails
