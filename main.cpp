@@ -67,6 +67,48 @@ int testGenerateRandomCardSuit(int testCount)
     return 0;
 }
 
+/*
+* Test geenerateRandomCardType function
+* @param testCount - number of tests to run
+* @return 0 if all cases pass, 1 if a test fails
+*/
+int testGenerateRandomCardType(int testCount)
+{
+    int numberCount{ 0 };
+    int faceCount{ 0 };
+    int aceCount{ 0 };
+    int otherCount{ 0 };
+
+    for (int i{ 0 }; i < testCount; ++i)
+    {
+        char cardType{ generateRandomCardType() };
+
+        switch (cardType)
+        {
+        case 'N':
+            ++numberCount;
+            break;
+        case 'F':
+            ++faceCount;
+            break;
+        case 'A':
+            ++aceCount;
+            break;
+        default:
+            ++otherCount;
+        }
+    }
+
+    //std::cout << "Number Count: " << numberCount << '\n';
+    //std::cout << "Face Count: " << faceCount << '\n';
+    //std::cout << "Ace Count: " << aceCount << '\n';
+    //std::cout << "Other Count: " << otherCount << '\n';
+
+    if (otherCount > 0) return 1;
+
+    return 0;
+}
+
 int main()
 {
     return 0;
