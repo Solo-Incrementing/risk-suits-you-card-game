@@ -1,4 +1,8 @@
+#include <iostream>
+
 #include "Random.h"
+
+#define DEBUG
 
 /*
 * generate a random card suit
@@ -152,5 +156,9 @@ int testAllFunctions()
 
 int main()
 {
+#ifdef DEBUG
+    std::cout << testAllFunctions() << '\n';
+#endif // DEBUG
+
     return 0;
 }
