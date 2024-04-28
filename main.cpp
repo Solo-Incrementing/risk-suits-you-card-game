@@ -56,6 +56,29 @@ int generateCardNumber()
     return Random::get(2, 10);
 }
 
+/*
+* generate a random card face
+* @return A character 'K', 'Q', or 'J' representing the card
+* faces King, Queen, and Jack respectively.
+* '0' if something went wrong
+*/
+char generateRandomCardFace()
+{
+    int faceNumber{ Random::get(1, 3) };
+
+    switch (faceNumber)
+    {
+    case 1:
+        return 'K';
+    case 2:
+        return 'Q';
+    case 3:
+        return 'J';
+    default:
+        return '0';
+    }
+}
+
 int main()
 {
 #ifdef DEBUG

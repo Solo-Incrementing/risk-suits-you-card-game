@@ -4,5 +4,6 @@
 char generateRandomCardSuit();
 char generateRandomCardType();
 int generateCardNumber();
+char generateRandomCardFace();
 
 #endif
