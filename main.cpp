@@ -6,6 +6,8 @@
 
 #define DEBUG
 
+const int g_startScore{ 130 };
+
 /*
 * generate a random card suit
 * @return A character 'C', 'S', 'D', or 'H' representing the card
@@ -48,10 +50,10 @@ char generateRandomCardType()
 }
 
 /*
-* generate a card number
+* generate a random card number
 * @return A random number between 2 and 10 inclusive for a number card
 */
-int generateCardNumber()
+int generateRandomCardNumber()
 {
     return Random::get(2, 10);
 }
@@ -82,8 +84,12 @@ char generateRandomCardFace()
 int main()
 {
 #ifdef DEBUG
-    std::cout << testAllFunctions() << '\n';
+    std::cout << "Automated Test Result: " << testAllFunctions() << '\n';
 #endif // DEBUG
+
+    int score{ g_startScore };
+
+    std::cout << "Starting score is: " << score << '\n';
 
     return 0;
 }
