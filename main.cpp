@@ -9,7 +9,29 @@
 
 #define DEBUG
 
-const int g_startScore{ 130 };
+namespace Constants
+{
+    constexpr int startScore{ 130 };
+
+    namespace ScoreChange {
+        constexpr int correctSuit{ 50 };
+        constexpr int incorrectSuit{ -10 };
+
+        constexpr int correctNumberType{ 10 };
+        constexpr int incorrectNumberType{ -5 };
+        constexpr int correctFaceType{ 100 };
+        constexpr int incorrectFaceType{ -50 };
+        constexpr int correctAceType{ 200 };
+        constexpr int incorrectAceType{ -100 };
+
+        constexpr int correctNumber{ 100 };
+        constexpr int incorrectNumber{ -50 };
+
+        constexpr int correctFace{ 50 };
+        constexpr int incorrectFace{ -25 };
+    }
+}
+
 
 /*
 * generate a random card suit
@@ -148,12 +170,25 @@ int main()
     std::cout << "Automated Test Result: " << testAllFunctions() << '\n';
 #endif // DEBUG
 
-    int score{ g_startScore };
+    int score{ Constants::startScore };
+
+    std::cout << "Starting score is: " << score << '\n';
+
+    char suit{ generateRandomCardSuit() };
+    char type{ generateRandomCardType() };
 
     char playerSuitGuess{ getPlayerSuitGuess() };
 
-    std::cout << "Starting score is: " << score << '\n';
+    (playerSuitGuess == suit)
+        ? score += Constants::ScoreChange::correctSuit
+        : score += Constants::ScoreChange::incorrectSuit;
+
+
     std::cout << "Player Suit guess is: " << playerSuitGuess << '\n';
+    std::cout << "The suit was: " << suit << '\n';
+    std::cout << "The type was: " << type << '\n';
+
+    std::cout << "Player Score now is: " << score << '\n';
 
     return 0;
 }
