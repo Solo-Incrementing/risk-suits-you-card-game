@@ -1,4 +1,7 @@
 #include <iostream>
+#include <limits> // for std::numeric_limits
+#include <cstdlib> // for std::exit
+#include <cctype> // for toupper()
 
 #include "Random.h"
 #include "main.h"
@@ -81,6 +84,64 @@ char generateRandomCardFace()
     }
 }
 
+/*
+* Ignore everything in the input buffer until the next \n
+*/
+void ignoreLine()
+{
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+/*
+* get player input character for a card suit.
+* Will keep on asking until a valid input is received.
+* @return A character 'C', 'S', 'D' or 'H' representing one of the card suits
+*/
+char getPlayerSuitGuess()
+{
+    while (true)
+    {
+        std::cout << "Guess the suit of the card!\n";
+        std::cout << "C - Clubs, S - Spades, D - Diamonds, H - Hearts\n";
+
+        char suitGuess{};
+        std::cin >> suitGuess;
+
+        if (!std::cin) // If the previous extraction failed
+        {
+            if (std::cin.eof()) // If the stream was closed
+            {
+                std::exit(0); // Shut down the program now (requires #include <cstdlib>)
+            }
+
+            // Handle the failure
+
+            std::cin.clear(); // Put us back in 'normal' operation mode
+            ignoreLine();     // And remove the bad input
+            continue;
+        }
+
+        switch (toupper(suitGuess))
+        {
+        case 'C':
+        case 'S':
+        case 'D':
+        case 'H':
+            break;
+        default:
+            std::cout << "That input is not suit-ed! Try again.\n";
+            ignoreLine(); // ignore extraneous input
+            continue;
+        }
+
+        // Valid Input Entered
+
+        ignoreLine(); // ignore extraneous input
+
+        return static_cast<char>(toupper(suitGuess));
+    }
+}
+
 int main()
 {
 #ifdef DEBUG
@@ -89,7 +150,10 @@ int main()
 
     int score{ g_startScore };
 
+    char playerSuitGuess{ getPlayerSuitGuess() };
+
     std::cout << "Starting score is: " << score << '\n';
+    std::cout << "Player Suit guess is: " << playerSuitGuess << '\n';
 
     return 0;
 }
