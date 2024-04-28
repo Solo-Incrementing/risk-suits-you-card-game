@@ -78,7 +78,7 @@ int testGenerateCardNumber(int testCount)
 {
     for (int i{ 0 }; i < testCount; ++i)
     {
-        int cardNumber{ generateCardNumber() };
+        int cardNumber{ generateRandomCardNumber() };
 
         if (cardNumber < 2) return 1;
         if (cardNumber > 10) return 2;

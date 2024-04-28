@@ -3,7 +3,7 @@
 
 char generateRandomCardSuit();
 char generateRandomCardType();
-int generateCardNumber();
+int generateRandomCardNumber();
 char generateRandomCardFace();
 
 #endif
