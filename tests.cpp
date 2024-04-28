@@ -87,6 +87,26 @@ int testGenerateCardNumber(int testCount)
     return 0;
 }
 
+int testGenerateRandomCardFace(int testCount)
+{
+    for (int i{ 0 }; i < testCount; ++i)
+    {
+        char cardFace{ generateRandomCardFace() };
+
+        switch (cardFace)
+        {
+        case 'K':
+        case 'Q':
+        case 'J':
+            break;
+        default:
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
 /*
 * Tests all functions
 * @param testCount - number of tests to run
@@ -97,6 +117,7 @@ int testAllFunctions()
     if (testGenerateRandomCardSuit(100) != 0) return 1;
     if (testGenerateRandomCardType(1300) != 0) return 2;
     if (testGenerateCardNumber(100) != 0) return 3;
+    if (testGenerateRandomCardFace(100) != 0) return 4;
 
     return 0;
 }

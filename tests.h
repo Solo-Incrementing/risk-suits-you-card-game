@@ -4,6 +4,7 @@
 int testGenerateRandomCardSuit(int testCount);
 int testGenerateRandomCardType(int testCount);
 int testGenerateCardNumber(int testCount);
+int testGenerateRandomCardFace(int testCount);
 int testAllFunctions();
 
 #endif
