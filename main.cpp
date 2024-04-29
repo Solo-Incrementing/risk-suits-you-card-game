@@ -164,6 +164,55 @@ char getPlayerSuitGuess()
     }
 }
 
+/*
+* get player input character for a card type.
+* Will keep on asking until a valid input is received.
+* @return A character 'N', 'F', or 'A' representing one of the card types
+*/
+char getPlayerTypeGuess()
+{
+    while (true)
+    {
+        std::cout << "Guess the type of the card!\n";
+        std::cout << "N - Number, F - Face, A - Ace\n";
+
+        char typeGuess{};
+        std::cin >> typeGuess;
+
+        if (!std::cin) // If the previous extraction failed
+        {
+            if (std::cin.eof()) // If the stream was closed
+            {
+                std::exit(0); // Shut down the program now (requires #include <cstdlib>)
+            }
+
+            // Handle the failure
+
+            std::cin.clear(); // Put us back in 'normal' operation mode
+            ignoreLine();     // And remove the bad input
+            continue;
+        }
+
+        switch (toupper(typeGuess))
+        {
+        case 'N':
+        case 'F':
+        case 'A':
+            break;
+        default:
+            std::cout << "I think you type-d wrong! Try again.\n";
+            ignoreLine(); // ignore extraneous input
+            continue;
+        }
+
+        // Valid Input Entered
+
+        ignoreLine(); // ignore extraneous input
+
+        return static_cast<char>(toupper(typeGuess));
+    }
+}
+
 int main()
 {
 #ifdef DEBUG
@@ -178,13 +227,35 @@ int main()
     char type{ generateRandomCardType() };
 
     char playerSuitGuess{ getPlayerSuitGuess() };
+    char playerTypeGuess{ getPlayerTypeGuess() };
 
     (playerSuitGuess == suit)
         ? score += Constants::ScoreChange::correctSuit
         : score += Constants::ScoreChange::incorrectSuit;
 
+    switch (playerTypeGuess)
+    {
+    case 'N':
+        score += (playerTypeGuess == type)
+            ? Constants::ScoreChange::correctNumberType
+            : Constants::ScoreChange::incorrectNumberType;
+        break;
+    case 'F':
+        score += (playerTypeGuess == type)
+            ? Constants::ScoreChange::correctFaceType
+            : Constants::ScoreChange::incorrectFaceType;
+        break;
+    case 'A':
+        score += (playerTypeGuess == type)
+            ? Constants::ScoreChange::correctAceType
+            : Constants::ScoreChange::correctAceType;
+        break;
+    default:
+        break;
+    }
 
-    std::cout << "Player Suit guess is: " << playerSuitGuess << '\n';
+    std::cout << "Player suit guess is: " << playerSuitGuess << '\n';
+    std::cout << "Player type guess is: " << playerTypeGuess << '\n';
     std::cout << "The suit was: " << suit << '\n';
     std::cout << "The type was: " << type << '\n';
 
