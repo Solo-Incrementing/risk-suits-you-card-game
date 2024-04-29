@@ -5,5 +5,8 @@ char generateRandomCardSuit();
 char generateRandomCardType();
 int generateRandomCardNumber();
 char generateRandomCardFace();
+void ignoreLine();
+char getPlayerSuitGuess();
+char getPlayerTypeGuess();
 
 #endif
